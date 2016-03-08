@@ -29,7 +29,7 @@
     <string name="app_name">Tank Controller</string>
     <!-- From: file:/Users/VisheshSood/Desktop/TankController/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Application.</string>
     <string name="button_scan">Scan for devices</string>
     <string name="discoverable">Make discoverable</string>
     <string name="insecure_connect">Connect a device - Insecure</string>
@@ -39,7 +39,11 @@
         <![CDATA[
         
             
-            This application is used to control our tank for E E 474.
+            This application is used to control our tank for E E 474. \n
+\n
+           App Designed By Vishesh Sood \n
+\n
+           Team: Erin, Laila, Vishesh
             
         
         ]]>
@@ -55,12 +59,12 @@
     <string name="sample_show_log">Show Log</string>
     <!-- From: file:/Users/VisheshSood/Desktop/TankController/Application/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="scanning">scanning for devices...</string>
+    <string name="scanning">Scanning!</string>
     <string name="secure_connect">Connect a device - Secure</string>
-    <string name="select_device">select a device to connect</string>
+    <string name="select_device">Pair A Device</string>
     <string name="send">Send</string>
-    <string name="title_connected_to">connected to <ns1:g id="device_name">%1$s</ns1:g></string>
-    <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">Connected to <ns1:g id="device_name">%1$s</ns1:g></string>
+    <string name="title_connecting">Connecting...</string>
     <string name="title_not_connected">not connected</string>
     <string name="title_other_devices">Other Available Devices</string>
     <string name="title_paired_devices">Paired Devices</string>

@@ -192,6 +192,8 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view)
                     sendMessage(UP);
+                TextView tv = (TextView)view.findViewById(R.id.textLabel);
+                tv.setText("Moving Forward");
             }
         });
 
@@ -202,6 +204,8 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view)
                     sendMessage(DOWN);
+                TextView tv = (TextView)view.findViewById(R.id.textLabel);
+                tv.setText("Moving Backwards");
             }
         });
 
@@ -212,6 +216,8 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view)
                     sendMessage(LEFT);
+                TextView tv = (TextView)view.findViewById(R.id.textLabel);
+                tv.setText("Turning Left");
             }
         });
 
@@ -222,6 +228,8 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view)
                     sendMessage(RIGHT);
+                TextView tv = (TextView)view.findViewById(R.id.textLabel);
+                tv.setText("Turning Right");
             }
         });
 
@@ -232,6 +240,8 @@ public class BluetoothChatFragment extends Fragment {
                 View view = getView();
                 if (null != view)
                     sendMessage(STOP);
+                TextView tv = (TextView)view.findViewById(R.id.textLabel);
+                tv.setText("Stopped!");
             }
         });
 
