@@ -28,9 +28,7 @@ import android.widget.Toast;
 
 import com.example.android.common.logger.Log;
 
-/**
- * This fragment controls Bluetooth to communicate with other devices.
- */
+
 public class BluetoothChatFragment extends Fragment {
 
     private static final String TAG = "BluetoothChatFragment";
@@ -59,29 +57,19 @@ public class BluetoothChatFragment extends Fragment {
     private final String RIGHT = "r";
     private final String STOP = "s";
 
-    /**
-     * Name of the connected device
-     */
+    
     private String mConnectedDeviceName = null;
 
-    /**
-     * Array adapter for the conversation thread
-     */
+    
     private ArrayAdapter<String> mConversationArrayAdapter;
 
-    /**
-     * String buffer for outgoing messages
-     */
+    
     private StringBuffer mOutStringBuffer;
 
-    /**
-     * Local Bluetooth adapter
-     */
+    
     private BluetoothAdapter mBluetoothAdapter = null;
 
-    /**
-     * Member object for the chat services
-     */
+    
     private BluetoothChatService mChatService = null;
 
     @Override
@@ -158,9 +146,7 @@ public class BluetoothChatFragment extends Fragment {
         mStopButton = (Button) view.findViewById(R.id.button_stop);
     }
 
-    /**
-     * Set up the UI and background operations for chat.
-     */
+    
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
@@ -253,9 +239,7 @@ public class BluetoothChatFragment extends Fragment {
         mOutStringBuffer = new StringBuffer("");
     }
 
-    /**
-     * Makes this device discoverable.
-     */
+    
     private void ensureDiscoverable() {
         if (mBluetoothAdapter.getScanMode() !=
                 BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
@@ -265,11 +249,7 @@ public class BluetoothChatFragment extends Fragment {
         }
     }
 
-    /**
-     * Sends a message.
-     *
-     * @param message A string of text to send.
-     */
+    
     private void sendMessage(String message) {
         // Check that we're actually connected before trying anything
         if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
@@ -289,9 +269,7 @@ public class BluetoothChatFragment extends Fragment {
         }
     }
 
-    /**
-     * The action listener for the EditText widget, to listen for the return key
-     */
+    
     private TextView.OnEditorActionListener mWriteListener
             = new TextView.OnEditorActionListener() {
         public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
@@ -304,11 +282,7 @@ public class BluetoothChatFragment extends Fragment {
         }
     };
 
-    /**
-     * Updates the status on the action bar.
-     *
-     * @param resId a string resource ID
-     */
+    
     private void setStatus(int resId) {
         FragmentActivity activity = getActivity();
         if (null == activity) {
@@ -321,11 +295,7 @@ public class BluetoothChatFragment extends Fragment {
         actionBar.setSubtitle(resId);
     }
 
-    /**
-     * Updates the status on the action bar.
-     *
-     * @param subTitle status
-     */
+    
     private void setStatus(CharSequence subTitle) {
         FragmentActivity activity = getActivity();
         if (null == activity) {
@@ -338,9 +308,7 @@ public class BluetoothChatFragment extends Fragment {
         actionBar.setSubtitle(subTitle);
     }
 
-    /**
-     * The Handler that gets information back from the BluetoothChatService
-     */
+    
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -420,12 +388,7 @@ public class BluetoothChatFragment extends Fragment {
         }
     }
 
-    /**
-     * Establish connection with other divice
-     *
-     * @param data   An {@link Intent} with {@link DeviceListActivity#EXTRA_DEVICE_ADDRESS} extra.
-     * @param secure Socket Security type - Secure (true) , Insecure (false)
-     */
+    
     private void connectDevice(Intent data, boolean secure) {
         // Get the device MAC address
         String address = data.getExtras()
