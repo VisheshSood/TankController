@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,8 +24,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.example.android.common.logger.Log;
 
@@ -49,6 +53,7 @@ public class BluetoothChatFragment extends Fragment {
     private Button mLeftButton;
     private Button mRightButton;
     private Button mStopButton;
+    private Button mToggleButton;
 
     // data to send
     private final String UP = "f";
@@ -57,6 +62,10 @@ public class BluetoothChatFragment extends Fragment {
     private final String RIGHT = "r";
     private final String STOP = "s";
 
+    // states for toggle button
+    String[] states = new String[]{"USER", "AUTO"};
+    String[] stateColor = new String[]{"#000000", "#0000FF"};
+    int state = 0;
     
     private String mConnectedDeviceName = null;
 
@@ -144,9 +153,12 @@ public class BluetoothChatFragment extends Fragment {
         mLeftButton = (Button) view.findViewById(R.id.button_left);
         mRightButton = (Button) view.findViewById(R.id.button_right);
         mStopButton = (Button) view.findViewById(R.id.button_stop);
+
+        mToggleButton = (Button) view.findViewById(R.id.toggleButton);
+
     }
 
-    
+
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
@@ -171,27 +183,31 @@ public class BluetoothChatFragment extends Fragment {
             }
         });
 
+
         // initialize up button
         mUpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view)
+                if (null != view) {
                     sendMessage(UP);
-                TextView tv = (TextView)view.findViewById(R.id.textLabel);
-                tv.setText("Moving Forward");
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText("Moving Forward");
+                }
             }
         });
+
 
         // initialize down button
         mDownButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view)
+                if (null != view) {
                     sendMessage(DOWN);
-                TextView tv = (TextView)view.findViewById(R.id.textLabel);
-                tv.setText("Moving Backwards");
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText("Moving Backwards");
+                }
             }
         });
 
@@ -200,10 +216,11 @@ public class BluetoothChatFragment extends Fragment {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view)
+                if (null != view) {
                     sendMessage(LEFT);
-                TextView tv = (TextView)view.findViewById(R.id.textLabel);
-                tv.setText("Turning Left");
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText("Turning Left");
+                }
             }
         });
 
@@ -212,10 +229,11 @@ public class BluetoothChatFragment extends Fragment {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view)
+                if (null != view) {
                     sendMessage(RIGHT);
-                TextView tv = (TextView)view.findViewById(R.id.textLabel);
-                tv.setText("Turning Right");
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText("Turning Right");
+                }
             }
         });
 
@@ -224,10 +242,34 @@ public class BluetoothChatFragment extends Fragment {
             public void onClick(View v) {
                 // Send a message using content of the edit text widget
                 View view = getView();
-                if (null != view)
+                if (null != view) {
                     sendMessage(STOP);
-                TextView tv = (TextView)view.findViewById(R.id.textLabel);
-                tv.setText("Stopped!");
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText("Stopped!");
+                }
+            }
+        });
+
+        // initialize toggle button
+        mToggleButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Send a message using content of the edit text widget
+                View view = getView();
+                if (null != view) {
+                    // check state
+                    int newState = (state+1)%2;
+
+                    // do work
+                    String newStateString = states[newState];
+                    sendMessage(newStateString);
+                    TextView tv = (TextView) view.findViewById(R.id.textLabel);
+                    tv.setText(newStateString);
+
+                    // update button text and states variable
+                    mToggleButton.setText(newStateString.toCharArray(), 0, newStateString.length());
+                    mToggleButton.setTextColor(Color.parseColor(stateColor[newState]));
+                    state = newState;
+                }
             }
         });
 
