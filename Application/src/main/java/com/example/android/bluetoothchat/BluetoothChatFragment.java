@@ -261,9 +261,11 @@ public class BluetoothChatFragment extends Fragment {
 
                     // do work
                     String newStateString = states[newState];
-                    sendMessage(newStateString);
+                    String character = newStateString.substring(0,1);
+                    sendMessage(character);
                     TextView tv = (TextView) view.findViewById(R.id.textLabel);
-                    tv.setText(newStateString);
+
+                    tv.setText(character);
 
                     // update button text and states variable
                     mToggleButton.setText(newStateString.toCharArray(), 0, newStateString.length());
